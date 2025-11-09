@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iblameaabis | Digital Creator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="IMG_20251031_155518_491.webp" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Info about the developer iblameaabis.">
+<meta property="og:description" content="Made by Aabis">
+<meta property="og:image" content="https://github.com/galactic242/iblameaabis.github.io/blob/main/IMG_20251031_155518_491.webp">
+<meta property="og:type" content="website">
+<meta property="og:url" content="">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-red: #FF0000;
+      --dark-red: #CC0000;
+      --blood-red: #990000;
+      --neon-red: #FF3333;
+      --pure-black: #000000;
+      --dark-gray: #1a1a1a;
+      --medium-gray: #2a2a2a;
+      --light-gray: #3a3a3a;
+      --primary-gradient: linear-gradient(135deg, #FF0000 0%, #990000 50%, #660000 100%);
+      --secondary-gradient: linear-gradient(135deg, #990000 0%, #660000 100%);
+      --glass-bg: rgba(255, 0, 0, 0.05);
+      --glass-border: rgba(255, 0, 0, 0.15);
+      --neon-glow: 0 0 20px rgba(255, 0, 0, 0.4);
+      --red-glow: 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--pure-black);
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .blood-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(153, 0, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(102, 0, 0, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .grid-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 2;
+      animation: scanline 2s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(4px); }
+    }
+
+    header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary-red);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .floating-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: var(--red-glow), inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: perspective(1000px) rotateX(0deg) translateY(0);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .floating-card:hover::before {
+      opacity: 0.02;
+    }
+
+    .floating-card:hover {
+      transform: perspective(1000px) rotateX(2deg) translateY(-10px) scale(1.01);
+      box-shadow: 0 25px 60px rgba(255, 0, 0, 0.2), var(--neon-glow);
+      border-color: rgba(255, 0, 0, 0.3);
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .badges span {
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .badges span::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .badges span:hover::before {
+      left: 100%;
+    }
+
+    .badges span:hover {
+      transform: translateY(-3px);
+      background: var(--primary-gradient);
+      box-shadow: var(--neon-glow);
+    }
+
+    section {
+      margin-top: 4rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
+    section:nth-child(6) { animation-delay: 0.5s; }
+    section:nth-child(7) { animation-delay: 0.6s; }
+
+    .section-header {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+      transform: scaleX(0.3);
+      transform-origin: left;
+      transition: transform 0.6s ease;
+    }
+
+    .section-header:hover::after {
+      transform: scaleX(1);
+    }
+
+    .section-header span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-content {
+      line-height: 1.7;
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 16px;
+      font-size: 1rem;
+      box-shadow: var(--red-glow);
+      position: relative;
+    }
+
+    .about-content mark {
+      background: var(--primary-gradient);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--neon-glow), 0 15px 30px rgba(0,0,0,0.3);
+      border-color: rgba(255, 0, 0, 0.3);
+    }
+
+    .service-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .service-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .projects-grid, .games-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card, .game-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before, .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover::before, .game-card:hover::before {
+      opacity: 0.03;
+    }
+
+    .project-card:hover, .game-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--neon-glow);
+    }
+
+    .project-card h4, .game-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .tags {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tags span {
+      background: rgba(255, 0, 0, 0.15);
+      padding: 0.4rem 0.8rem;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tags span:hover {
+      background: var(--primary-gradient);
+      transform: scale(1.05);
+      box-shadow: var(--neon-glow);
+    }
+
+    .skills-showcase {
+      margin-top: 4rem;
+    }
+
+    .skills-showcase h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 3rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .skills-container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .skills-category {
+      margin-bottom: 3rem;
+    }
+
+    .category-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .category-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--primary-gradient);
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideInLeft 0.8s ease forwards;
+      gap: 0.8rem;
+    }
+
+    .skill-item:nth-child(odd) { animation-delay: 0.1s; }
+    .skill-item:nth-child(even) { animation-delay: 0.2s; }
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .skill-item i {
+      font-size: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      min-width: 30px;
+    }
+
+    .skill-info {
+      flex: 1;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .skill-bar-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .skill-bar {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      height: 14px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--primary-gradient);
+      width: 0;
+      border-radius: 8px;
+      transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .skill-percentage {
+      font-weight: 700;
+      color: white;
+      min-width: 45px;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .socials-showcase h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 250px;
+      justify-content: center;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .social-link:hover::before {
+      opacity: 1;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+      border-color: transparent;
+      color: white;
+      box-shadow: var(--neon-glow);
+    }
+
+    .social-link i {
+      font-size: 1.3rem;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        padding: 1.5rem 2rem;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero {
+        padding: 6rem 2rem;
+      }
+      
+      .hero h2 {
+        font-size: 5rem;
+      }
+      
+      .hero p {
+        font-size: 1.4rem;
+      }
+      
+      .floating-card {
+        padding: 3rem 2.5rem;
+        border-radius: 32px;
+      }
+      
+      .badges span {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.95rem;
+      }
+      
+      section {
+        margin-top: 8rem;
+      }
+      
+      .section-header {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+      }
+      
+      .about-content {
+        padding: 3rem;
+        border-radius: 24px;
+        font-size: 1.1rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+      }
+      
+      .service-card {
+        padding: 3rem 2.5rem;
+        border-radius: 24px;
+      }
+      
+      .service-card:hover {
+        transform: translateY(-15px);
+      }
+      
+      .projects-grid, .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+      }
+      
+      .project-card, .game-card {
+        padding: 2.5rem;
+        border-radius: 24px;
+      }
+      
+      .project-card:hover, .game-card:hover {
+        transform: translateY(-12px);
+      }
+      
+      .skills-showcase {
+        margin-top: 8rem;
+      }
+      
+      .skills-showcase h1 {
+        font-size: 4.5rem;
+        margin-bottom: 5rem;
+      }
+      
+      .skills-container {
+        max-width: 1100px;
+      }
+      
+      .skills-category {
+        margin-bottom: 5rem;
+      }
+      
+      .category-title {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+      }
+      
+      .skill-item {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 3rem;
+        gap: 0;
+      }
+      
+      .skill-header {
+        width: auto;
+        flex: 1;
+      }
+      
+      .skill-item i {
+        font-size: 2.2rem;
+        margin-right: 2rem;
+        min-width: 50px;
+      }
+      
+      .skill-info {
+        font-size: 1.2rem;
+      }
+      
+      .skill-bar-container {
+        flex: 2;
+        margin-right: 2rem;
+      }
+      
+      .skill-bar {
+        height: 18px;
+        border-radius: 12px;
+        margin-right: 0;
+      }
+      
+      .skill-progress {
+        border-radius: 12px;
+      }
+      
+      .skill-percentage {
+        min-width: 60px;
+        font-size: 1.1rem;
+      }
+      
+      .social-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+      }
+      
+      .social-link {
+        width: auto;
+        padding: 1.5rem 3rem;
+        font-size: 1.2rem;
+      }
+      
+      .social-link:hover {
+        transform: translateY(-8px);
+      }
+      
+      .social-link i {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+      
+      .section-header {
+        font-size: 1.8rem;
+      }
+      
+      .skills-showcase h1 {
+        font-size: 2rem;
+      }
+      
+      .floating-card {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blood-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="scanlines"></div>
+
+  <header>
+    <h1>iblameaabis</h1>
+    <button class="mobile-menu-btn">
+      <i class='bx bx-menu'></i>
+    </button>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="floating-card">
+        <h2>iblameaabis</h2>
+        <p>Frontend || Backend Developer & UI/UX Designer</p>
+        <div class="badges">
+          <span>Digital Creator</span>
+          <span>UI Designer</span>
+          <span>Script Developer</span>
+          <span>Security Expert</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="about">
+      <h3 class="section-header">About <span>Me</span></h3>
+      <div class="about-content">
+        <p>I make websites and scripts that work good. I know Lua, Lua(U), Python, JavaScript, TypeScript, HTML, CSS, C++, C#, C, Bash, Java, and other coding stuff. I build things that look nice and work fast. I play games like Roblox and PUBG which helps me understand what people want. Looking for cool projects to work on.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section-header">My <span>Services</span></h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class='bx bx-code'></i>
+          <h4>Script Development</h4>
+          <p>Making Lua scripts that work properly</p>
+        </div>
+        <div class="service-card">
+          <i class='bx bxs-paint'></i>
+          <h4>UI Design</h4>
+          <p>Creating interfaces that make sense</p>
+        </div>
+        <div class="service-card">
+          <i class='bx bxs-shield'></i>
+          <h4>Security Solutions</h4>
+          <p>Keeping projects safe and secure fr</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section-header">My <span>Work</span></h3>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h4>Enchanted Hub</h4>
+          <p>Scripts and tools for gaming and to enhance gameplay</p>
+          <div class="tags">
+            <span>Lua</span><span>JavaScript</span><span>Python</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h4>Portfolio Website</h4>
+          <p>This website you're looking at</p>
+          <div class="tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h4>UI Kit Library</h4>
+          <p>Components for building websites</p>
+          <div class="tags">
+            <span>React</span><span>TypeScript</span><span>CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gaming">
+      <h3 class="section-header">My <span>Gaming</span></h3>
+      <div class="games-grid">
+        <div class="game-card">
+          <h4>Roblox</h4>
+          <p>Building and scripting experiences</p>
+          <div class="tags"><span>Lua</span><span>Luau</span></div>
+        </div>
+        <div class="game-card">
+          <h4>PUBG</h4>
+          <p>Battle royale gameplay</p>
+          <div class="tags"><span>Multiplayer</span><span>Strategy</span></div>
+        </div>
+        <div class="game-card">
+          <h4>Free Fire</h4>
+          <p>Mobile battle royale</p>
+          <div class="tags"><span>Mobile</span><span>Action</span></div>
+        </div>
+        <div class="game-card">
+          <h4>Minecraft</h4>
+          <p>Building and survival</p>
+          <div class="tags"><span>Creative</span><span>Sandbox</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-showcase">
+      <h1>My Skills</h1>
+      <div class="skills-container">
+        <div class="skills-category">
+          <div class="category-title">Not ALL Programming Languages! Check About Me.</div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bx-code-curly'></i>
+              <div class="skill-info">Lua/Luau</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
+              <div class="skill-percentage">95%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-javascript'></i>
+              <div class="skill-info">JavaScript</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+              <div class="skill-percentage">90%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-typescript'></i>
+              <div class="skill-info">TypeScript</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+              <div class="skill-percentage">85%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-python'></i>
+              <div class="skill-info">Python</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 97%;"></div></div>
+              <div class="skill-percentage">97%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="category-title">Design & UI/UX</div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxs-paint'></i>
+              <div class="skill-info">UI Design</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
+              <div class="skill-percentage">95%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-tailwind-css'></i>
+              <div class="skill-info">Tailwind CSS</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+              <div class="skill-percentage">90%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-react'></i>
+              <div class="skill-info">React</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 88%;"></div></div>
+              <div class="skill-percentage">88%</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <i class='bx bxl-figma'></i>
+              <div class="skill-info">Figma</div>
+            </div>
+            <div class="skill-bar-container">
+              <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+              <div class="skill-percentage">100%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="socials-showcase">
+      <h3 class="section-header">My <span>Socials</span></h3>
+      <div class="social-links">
+        <a href="https://discord.gg/enchantedhub" class="social-link"><i class='bx bxl-discord'></i> Discord</a>
+        <a href="https://www.youtube.com/@Iblameaabis" class="social-link"><i class='bx bxl-youtube'></i> YouTube</a>
+        <a href="https://github.com/iblameaabis" class="social-link"><i class='bx bxl-github'></i> GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const skillItems = document.querySelectorAll('.skill-item');
+      skillItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progress = entry.target.querySelector('.skill-progress');
+            if (progress) {
+              const width = progress.style.width;
+              progress.style.width = width;
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll('.skill-item').forEach(item => {
+        observer.observe(item);
+      });
+
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          alert('Mobile menu would open here');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
